@@ -39,4 +39,8 @@
     (is (map? (meta-merge {:a :b} {:c :d})))
     (is (vector? (meta-merge [:a :b] [:c])))
     (is (set? (meta-merge #{:a :b} #{:c})))
-    (is (list? (meta-merge '(:a :b) '(:c))))))
+    (is (list? (meta-merge '(:a :b) '(:c)))))
+
+  (testing "nil displace"
+    (is (= (meta-merge {:b :c} {:a ^:displace [:d]})
+           {:a [:d] :b :c}))))
