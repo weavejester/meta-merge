@@ -90,9 +90,9 @@
         (and (coll? left) (coll? right))
         (if (or (-> left meta :prepend)
                 (-> right meta :prepend))
-          (-> (concat right left)
+          (-> (into (empty left) (concat right left))
               (with-meta (merge (meta left)
                                 (select-keys (meta right) [:displace]))))
-          (concat left right))
+          (into (empty left) (concat left right)))
         
         :else right))

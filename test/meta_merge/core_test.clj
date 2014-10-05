@@ -33,4 +33,10 @@
 
   (testing "deep inner merge"
     (is (= (meta-merge {:a {:b {:c [:d]}}} {:a {:b {:c [:e] :f :g}}})
-           {:a {:b {:c [:d :e] :f :g}}}))))
+           {:a {:b {:c [:d :e] :f :g}}})))
+
+  (testing "collection type remains the same"
+    (is (map? (meta-merge {:a :b} {:c :d})))
+    (is (vector? (meta-merge [:a :b] [:c])))
+    (is (set? (meta-merge #{:a :b} #{:c})))
+    (is (list? (meta-merge '(:a :b) '(:c))))))
