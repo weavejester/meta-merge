@@ -1,5 +1,7 @@
 # Meta-Merge
 
+[![Build Status](https://travis-ci.org/weavejester/meta-merge.svg?branch=master)](https://travis-ci.org/weavejester/meta-merge)
+
 This is a standalone implementation of the [Leiningen][] `meta-merge`
 function. It's particularly useful for merging configuration maps.
 
