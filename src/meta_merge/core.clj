@@ -81,11 +81,6 @@
   (cond (different-priority? left right)
         (pick-prioritized left right)
 
-        (-> left meta :reduce)
-        (-> left meta :reduce
-            (reduce left right)
-            (with-meta (meta left)))
-
         (and (map? left) (map? right))
         (merge-with meta-merge left right)
 
