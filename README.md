@@ -11,7 +11,7 @@ function. It's particularly useful for merging configuration maps.
 
 To install, add the following to your project `:dependencies`:
 
-    [meta-merge "0.1.0-SNAPSHOT"]
+    [meta-merge "0.1.0"]
 
 ## Usage
 

@@ -1,4 +1,4 @@
-(defproject meta-merge "0.1.0-SNAPSHOT"
+(defproject meta-merge "0.1.0"
   :description "A standalone implementation of Leiningen's meta-merge function"
   :url "https://github.com/weavejester/meta-merge"
   :license {:name "Eclipse Public License"
