@@ -43,4 +43,14 @@
 
   (testing "nil displace"
     (is (= (meta-merge {:b :c} {:a ^:displace [:d]})
-           {:a [:d] :b :c}))))
+           {:a [:d] :b :c})))
+
+  (testing "varargs"
+    (is (= (meta-merge)
+           {}))
+    (is (= (meta-merge {:a :b})
+           {:a :b}))
+    (is (= (meta-merge {:a :b :x 1} {:a :c :y 2} {:a :d})
+           {:a :d :x 1 :y 2}))
+    (is (= (meta-merge {:a :b :x 1} {:a :c :y 2} {:a :d} {:y 4 :z 3})
+           {:a :d :x 1 :y 4 :z 3}))))
