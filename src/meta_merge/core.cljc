@@ -1,11 +1,16 @@
 (ns meta-merge.core
   (:require [clojure.set :as set]))
 
+(defn- metadatable?
+  [obj]
+  #?(:clj (instance? clojure.lang.IObj obj)
+     :cljs ((some-fn coll? symbol?) obj)))
+
 (defn- meta*
   "Returns the metadata of an object, or nil if the object cannot hold
   metadata."
   [obj]
-  (if (instance? clojure.lang.IObj obj)
+  (if (metadatable? obj)
     (meta obj)
     nil))
 
@@ -13,7 +18,7 @@
   "Returns an object of the same type and value as obj, with map m as its
   metadata if the object can hold metadata."
   [obj m]
-  (if (instance? clojure.lang.IObj obj)
+  (if (metadatable? obj)
     (with-meta obj m)
     obj))
 

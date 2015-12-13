@@ -1,6 +1,8 @@
 (ns meta-merge.core-test
-  (:require [clojure.test :refer :all]
-            [meta-merge.core :refer :all]))
+  (:require
+            #?(:clj  [clojure.test :refer :all]
+               :cljs [cljs.test :refer-macros [deftest is testing]])
+            [meta-merge.core :refer [meta-merge]]))
 
 (deftest test-meta-merge
   (testing "simple merge"
