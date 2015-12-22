@@ -24,18 +24,48 @@ The `meta-merge` function recursively merges two data structures.
 => {:a [:b :c :d]}
 ```
 
+## Metadata
+
 Metadata hints can be provided to override the default behavior:
+
+### Prepend
+
+When `meta-merge` is called with a hash-map that has `^:prepend` on it, the
+function  will take the values on the right and prepend them to the set on the
+left (the default would **append** them as you can see above). You can see this
+below.
 
 ```clojure
 (meta-merge {:a [:b :c]} {:a ^:prepend [:d]})
 => {:a [:d :b :c]}
+```
 
+### Replace
+
+When `meta-merge` is called with a hash-map that has `^:replace` on it, the
+function will take the values on the right and completely replace the ones on
+the left. You can see this below:
+
+```clojure
 (meta-merge {:a [:b :c]} {:a ^:replace [:d]})
 => {:a [:d]}
+```
 
+With replace the map to the right takes precedence.
+
+### Displace
+
+When `meta-merge` is called with a hash-map that has `^:displace` on it, the
+function will take the values on the right, only if there are no values on the
+left. You can see this below:
+
+```clojure
 (meta-merge {:a [:b :c]} {:a ^:displace [:d]})
 => {:a [:b :c]}
 ```
+
+With displace the map to the left takes precedence. This makes displace a
+good solution for default values.
 
 ## License
 
