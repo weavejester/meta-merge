@@ -5,7 +5,8 @@
   "Returns the metadata of an object, or nil if the object cannot hold
   metadata."
   [obj]
-  (if (instance? clojure.lang.IObj obj)
+  (if #?(:clj (instance? clojure.lang.IObj obj)
+         :cljs (satisfies? IMeta obj))
     (meta obj)
     nil))
 
@@ -13,7 +14,8 @@
   "Returns an object of the same type and value as obj, with map m as its
   metadata if the object can hold metadata."
   [obj m]
-  (if (instance? clojure.lang.IObj obj)
+  (if #?(:clj (instance? clojure.lang.IObj obj)
+         :cljs (satisfies? IWithMeta obj))
     (with-meta obj m)
     obj))
 
