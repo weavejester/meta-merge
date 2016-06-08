@@ -69,7 +69,7 @@ good solution for default values.
 
 ## License
 
-Copyright © 2014 Phil Hagelberg, James Reeves and all the Leiningen
+Copyright © 2016 Phil Hagelberg, James Reeves and all the Leiningen
 [contributors][].
 
 Distributed under the Eclipse Public License either version 1.0 or (at
