@@ -1,0 +1,6 @@
+test:
+  override:
+    - LEIN_JAVA_CMD=/usr/lib/jvm/jdk1.8.0/bin/java lein trampoline test
+    - LEIN_JAVA_CMD=/usr/lib/jvm/jdk1.8.0/bin/java lein test-cljs
+    - LEIN_JAVA_CMD=/usr/lib/jvm/jdk1.7.0/bin/java lein trampoline test
+    - LEIN_JAVA_CMD=/usr/lib/jvm/jdk1.7.0/bin/java lein test-cljs
