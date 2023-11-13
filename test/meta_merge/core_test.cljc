@@ -54,4 +54,13 @@
     (is (= (meta-merge {:a :b :x 1} {:a :c :y 2} {:a :d})
            {:a :d :x 1 :y 2}))
     (is (= (meta-merge {:a :b :x 1} {:a :c :y 2} {:a :d} {:y 4 :z 3})
-           {:a :d :x 1 :y 4 :z 3}))))
+           {:a :d :x 1 :y 4 :z 3})))
+
+  (testing "meta remove"
+    (is (= {:b 2} (meta-merge {:a 1 :b 2} {:a ^:remove []})))
+    (is (= {:a {:c 3}} (meta-merge {:a {:b {} :c 3}} {:a {:b ^:remove {}}})))
+    (is (= {:a 1 :b 20 :c {:f 6}}
+         (meta-merge {:a 1 :b 2 :c {:d 4 :e 5}}
+                     {:b ^:remove []}
+                     {:b 20 :c ^:remove {}}
+                     {:c {:f 6}})))))

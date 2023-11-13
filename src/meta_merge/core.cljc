@@ -46,6 +46,11 @@
     obj
     (vary-meta obj dissoc :top-displace)))
 
+(defn- remove?
+  "Returns true if the key-value-pair is marked for removal"
+  [kvp]
+  (-> kvp val meta* :remove))
+
 (defn- pick-prioritized
   "Picks the highest prioritized element of left and right and merge their
   metadata."
@@ -86,7 +91,10 @@
          (pick-prioritized left right)
 
          (and (map? left) (map? right))
-         (merge-with meta-merge left right)
+         (let [right-meta (meta* right)
+               merged     (cond-> (merge-with meta-merge left right)
+                            right-meta (with-meta* right-meta))]
+           (into (empty merged) (remove remove?) merged))
 
          (and (set? left) (set? right))
          (set/union right left)
